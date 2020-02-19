@@ -17,12 +17,14 @@ interface Post {
 }
 
 interface State{
+    isLoading: boolean
     post: Post | null
 }
 
 
 export default class ViewPost extends React.Component<Props, State>{
     state: State = {
+        isLoading: false,
         post: {
             _id: "",
             body: "",
@@ -33,6 +35,12 @@ export default class ViewPost extends React.Component<Props, State>{
         }
     };
     componentDidMount(){
+        this.setState((prevState) => {
+            return {
+                isLoading: false,
+                ...prevState
+            }
+        })
         fetch(`http://localhost:8000/api/v1/posts/${this.props.params.match.params.id}`)
         .then((res) => res.json())
         .then(({data}) => {
@@ -42,8 +50,28 @@ export default class ViewPost extends React.Component<Props, State>{
         })
 
     }
+
+    goBack = () => {
+       const {history} = this.props.params;
+       history.push('/')
+    }
     render(){
         console.log(this.state.post?.title)
-    return (<PostItem isViewPost={true} post={this.state.post}/>)
+    return (
+        <div>
+            {
+                !this.state.isLoading && (
+                    <PostItem isViewPost={true} onGoBack={this.goBack} post={this.state.post}/>
+                )
+            }
+            {
+                this.state.isLoading && (
+                    <div className="loader"></div>
+                )
+            }
+
+
+        </div>
+        )
     }
 }

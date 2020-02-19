@@ -5,22 +5,19 @@ interface Post {
     body?: string,
     title?: string,
     description?: string,
-    created_on?: string,
-    updated_on?: string
+    createdAt?: string,
+    updatedAt?: string
 }
 
 interface Props {
     post: Post | null,
-    isViewPost: boolean
+    isViewPost: boolean,
+    onGoBack?: () => void
 }
 
 
 export default class PostItem extends React.Component<Props, {}>{
-
-
-    handleClick = (e: any) => {
-
-    }
+  
     render(){
         return(
 
@@ -31,6 +28,16 @@ export default class PostItem extends React.Component<Props, {}>{
                     {
                         !this.props.isViewPost && (
                             <Link to={`/post/${this.props.post?._id}`}>{'Click to View'}</Link>
+                        )
+                    }
+                    {
+
+                        this.props.isViewPost && (
+                            <button onClick={ () => {
+                                if(this.props.onGoBack){
+                                    this.props.onGoBack()
+                                }
+                            }}>Go Back</button>
                         )
                     }
                 </div>
