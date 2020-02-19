@@ -14,7 +14,7 @@ export default class PostList extends React.Component<Props>{
       <div className="post-list">{
 
       !this.props.isLoading && (
-                this.props.posts.map((post: any) => <PostItem key={post._id} post={post}/>)
+                this.props.posts.map((post: any) => <PostItem isViewPost={false} key={post._id} post={post}/>)
         )
       }{
           this.props.isLoading && (

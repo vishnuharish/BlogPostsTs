@@ -1,14 +1,17 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom'
 interface Post {
-    _id: string,
-    title: string,
-    body: string,
-    description: string
+    _id?: string,
+    body?: string,
+    title?: string,
+    description?: string,
+    created_on?: string,
+    updated_on?: string
 }
 
 interface Props {
-    post: Post
+    post: Post | null,
+    isViewPost: boolean
 }
 
 
@@ -22,10 +25,14 @@ export default class PostItem extends React.Component<Props, {}>{
         return(
 
                 <div className="post-item">
-                    <p className="post-title">{this.props.post.title}</p>
-                    <p className="post-description">{this.props.post.description}</p>
-                    <p className="post-body">{this.props.post.body}</p>
-                    <button onClick={this.handleClick}>Click to View</button>
+                    <p className="post-title">{this.props.post?.title}</p>
+                    <p className="post-description">{this.props.post?.description}</p>
+                    <p className="post-body">{this.props.post?.body}</p>
+                    {
+                        !this.props.isViewPost && (
+                            <Link to={`/post/${this.props.post?._id}`}>{'Click to View'}</Link>
+                        )
+                    }
                 </div>
 
         )
