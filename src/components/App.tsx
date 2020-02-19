@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 import './App.css';
 import Posts from './Posts'
 import PostList from './PostList'
@@ -8,7 +8,9 @@ function App() {
   return (
 
     <div className="App">
-       <h1> Posts </h1>
+       <h1 className="title"> 
+          <Link to="/"> Posts </Link>   
+      </h1>
        <Route exact path="/" render={() => (
         <div>
             <Posts>
