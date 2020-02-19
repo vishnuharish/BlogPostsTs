@@ -4,6 +4,8 @@ import './App.css';
 import Posts from './Posts'
 import PostList from './PostList'
 import ViewPost from './ViewPost'
+import { CreatePost } from './CreatePost';
+import EditPost from './EditPost'
 function App() {
   return (
 
@@ -24,6 +26,15 @@ function App() {
     )}>
   </Route>    
   <Route exact path="/post/:id" render={(params) => ( <ViewPost params={params}/>)}></Route>
+  <Route exact path="/post/" render={({history}) => ( <CreatePost initialValues={
+    {
+      title: '',
+      description: '',
+      body: ''
+    }
+   
+  } history = {history}/>)}></Route>
+  <Route exact path="/post/:id/edit" render={(params) => ( <EditPost params={params}/>)}></Route>
     </div>
     
   );
