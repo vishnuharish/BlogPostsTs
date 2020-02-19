@@ -33,7 +33,12 @@ function App() {
       body: ''
     }
    
-  } history = {history}/>)}></Route>
+  } 
+  history = {history}
+  onCancel = { () => {
+    history.push('/')
+  }}
+  />)}></Route>
   <Route exact path="/post/:id/edit" render={(params) => ( <EditPost params={params}/>)}></Route>
     </div>
     

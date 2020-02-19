@@ -17,6 +17,7 @@ interface MyFormValues {
 interface Props {
     initialValues: MyFormValues
     history: any
+    onCancel: () => void
 }
 export const CreatePost: React.FC<Props> = (props: Props) => {
   const initialValues: MyFormValues = { 
@@ -90,6 +91,7 @@ export const CreatePost: React.FC<Props> = (props: Props) => {
             />
 
             <button type="submit">submit</button>
+            <button onClick={() => props.onCancel()}>Cancel</button>
           </Form>
         )}
       />

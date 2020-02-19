@@ -17,6 +17,10 @@ export default class EditPost extends React.Component<Props, State> {
         isLoading: true,
         post: {}
     }
+
+    handleCancel = () => {
+        this.props.params.history.push('/')
+    }
     componentDidMount(){
         this.setState({
             isLoading: true,
@@ -35,7 +39,7 @@ render(){
     return(
         <div>
         {
-            !this.state.isLoading && ( <CreatePost initialValues={this.state.post} history={this.props.params.history}/> )
+            !this.state.isLoading && ( <CreatePost initialValues={this.state.post} history={this.props.params.history} onCancel={this.handleCancel}/> )
         }
         {
             this.state.isLoading && ( <div className="loader"></div>)
