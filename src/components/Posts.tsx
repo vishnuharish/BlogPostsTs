@@ -24,7 +24,7 @@ componentDidMount(){
         isLoading: true,
         posts: []
     })
-    fetch('http://localhost:8000/api/v1/posts')
+    fetch('http://localhost:5000/api/v1/posts')
     .then((res) => res.json())
     .then(({data}) => {
         this.setState({

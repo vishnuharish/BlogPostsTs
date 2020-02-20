@@ -39,7 +39,8 @@ export default class PostItem extends React.Component<Props, {}>{
                                 }
                             }}>Go Back</button>
                         )
-                    }
+                    } | 
+                    <Link to={`/post/${this.props.post?._id}/edit`}>{'Edit'}</Link>
                 </div>
 
         )

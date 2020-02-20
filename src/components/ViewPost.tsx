@@ -41,7 +41,7 @@ export default class ViewPost extends React.Component<Props, State>{
                 ...prevState
             }
         })
-        fetch(`http://localhost:8000/api/v1/posts/${this.props.params.match.params.id}`)
+        fetch(`http://localhost:5000/api/v1/posts/${this.props.params.match.params.id}`)
         .then((res) => res.json())
         .then(({data}) => {
             this.setState({
