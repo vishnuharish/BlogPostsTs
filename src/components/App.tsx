@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, Link} from 'react-router-dom'
-import './App.css';
 import Posts from './Posts'
 import PostList from './PostList'
 import ViewPost from './ViewPost'
@@ -9,12 +8,13 @@ import EditPost from './EditPost'
 function App() {
   return (
 
-    <div className="App">
-       <h1 className="title"> 
-          <Link to="/"> Posts </Link>   
-      </h1>
+    <div className="container-fluid">
+      <div className="text-center">
+            <Link to="/" className="display-4"> Posts </Link>   
+      </div>
+       
        <Route exact path="/" render={() => (
-        <div>
+        <div className="row">
             <Posts>
               {
                   props => (
@@ -26,7 +26,10 @@ function App() {
     )}>
   </Route>    
   <Route exact path="/post/:id" render={(params) => ( <ViewPost params={params}/>)}></Route>
-  <Route exact path="/post/" render={({history}) => ( <CreatePost initialValues={
+  <Route exact path="/post/" render={({history}) => ( 
+  
+  <div className="row d-flex justify-content-center">
+      <CreatePost initialValues={
     {
       title: '',
       description: '',
@@ -38,8 +41,12 @@ function App() {
   onCancel = { () => {
     history.push('/')
   }}
-  />)}></Route>
-  <Route exact path="/post/:id/edit" render={(params) => ( <EditPost params={params}/>)}></Route>
+  />
+  </div> 
+  )}
+  >
+  </Route>
+  <Route exact path="/post/:id/edit" render={(params) => ( <div className="row"><EditPost params={params}/></div>)}></Route>
     </div>
     
   );

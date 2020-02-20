@@ -37,7 +37,7 @@ export default class EditPost extends React.Component<Props, State> {
     }
 render(){
     return(
-        <div>
+        <div className="col-md-12">
         {
             !this.state.isLoading && ( <CreatePost initialValues={this.state.post} history={this.props.params.history} onCancel={this.handleCancel}/> )
         }

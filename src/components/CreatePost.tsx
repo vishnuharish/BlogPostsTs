@@ -25,7 +25,8 @@ export const CreatePost: React.FC<Props> = (props: Props) => {
       description: props.initialValues.description || '', 
       body:  props.initialValues.body||'' };
   return (
-    <div>
+    <div className="col-md-4 mx-auto">
+      <div className="border-1">
       <Formik
         initialValues={initialValues}
         onSubmit={(values, actions) => {
@@ -58,12 +59,15 @@ export const CreatePost: React.FC<Props> = (props: Props) => {
           actions.setSubmitting(false);
         }}
         render={formikBag => (
-          <Form>
+          <Form >
             <Field
               name="title"
               render={({field, form, meta}: FieldProps) => (
-                <div>
-                  <input type="text" {...field} placeholder="title" />
+                <div className="form-group row">
+                  <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
+                  <div className="col-sm-6">
+                      <input className="form-control" id="title" type="text" {...field} placeholder="title" />
+                  </div>
                   {meta.touched && meta.error && meta.error}
                 </div>
                 
@@ -72,8 +76,11 @@ export const CreatePost: React.FC<Props> = (props: Props) => {
             <Field
               name="description"
               render={({field, form, meta}: FieldProps) => (
-                <div>
-                  <textarea {...field} placeholder="description" />
+                <div className="form-group row">
+                  <label htmlFor="description" className="col-sm-2 col-form-label">Description</label>
+                  <div className="col-sm-6">
+                    <textarea className="form-control"{...field} id="description" placeholder="description" />
+                  </div>
                   {meta.touched && meta.error && meta.error}
                 </div>
                 
@@ -82,19 +89,26 @@ export const CreatePost: React.FC<Props> = (props: Props) => {
             <Field
               name="body"
               render={({field, form, meta}: FieldProps) => (
-                <div>
-                  <textarea {...field} placeholder="body" />
+                <div className="form-group row">
+                  <label htmlFor="body" className="col-sm-2 col-form-label">Body</label>
+                  <div className="col-sm-6">
+                    <textarea className="form-control"{...field} id="body" placeholder="body" />
+                  </div>
                   {meta.touched && meta.error && meta.error}
                 </div>
                 
               )}
             />
-
-            <button type="submit">submit</button>
-            <button onClick={() => props.onCancel()}>Cancel</button>
+          <div className="row">
+            <div className="mx-auto">
+              <button className="btn btn-sm btn-outline-primary" type="submit">submit</button>
+              &nbsp; &nbsp;<button className="btn btn-sm btn-outline-danger" onClick={() => props.onCancel()}>Cancel</button>
+            </div>
+          </div>  
           </Form>
         )}
       />
+    </div>
     </div>
   );
 };
