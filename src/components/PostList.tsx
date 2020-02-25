@@ -11,7 +11,7 @@ export default class PostList extends React.Component<Props>{
   render(){
 
       return (
-      <div className="mx-auto">{
+      <div className="row">{
 
       !this.props.isLoading && (
                 this.props.posts.map((post: any) => <PostItem isViewPost={false} key={post._id} post={post}/>)
